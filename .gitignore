@@ -1,0 +1,6 @@
+.DS_Store
+github_api_key
+.gradle
+build
+out
+.idea
