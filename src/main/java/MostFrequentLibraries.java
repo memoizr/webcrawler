@@ -29,6 +29,11 @@ public class MostFrequentLibraries {
                 .flatMap(result -> libFinder.findLibraries(result.getLink()))
                 .collect(Collectors.toList());
 
+        // There's practical limits to how the same library with different names can be handled.
+        // At least, with some string processing /regex it could be possible to handle different versions of
+        // otherwise similarly named libraries.
+        // With WebDriver and some JS magic maybe more info could be obtained. I'm not sure there'd be ONE trivial
+        // solution to this.
         libs.forEach((library) -> popularLibraries.put(library, popularLibraries.getOrDefault(library, 0) + 1));
 
         return popularLibraries.entrySet()
