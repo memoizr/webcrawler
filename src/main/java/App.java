@@ -5,17 +5,16 @@ import java.util.regex.Pattern;
 
 public class App {
     public static void main(String[] args) {
-        System.out.println("Enter query, then press enter");
-        var scanner = new Scanner(System.in);
+        System.out.println("Type the query, then press enter");
+        Scanner scanner = new Scanner(System.in);
         scanner.useDelimiter(Pattern.compile("[\\r\\n;]+"));
-        var arg = scanner.next();
+        String arg = scanner.next();
         scanner.close();
 
         new MostFrequentLibraries(new BingSearchEngine(), new JsoupLibFinder())
                 .fromTerm(arg)
                 .stream()
                 .map(Library::getName)
-                // Good old println
                 .forEach(System.out::println);
     }
 }

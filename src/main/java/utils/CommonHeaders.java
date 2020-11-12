@@ -6,7 +6,7 @@ import java.util.HashMap;
 // I copied the headers from a browser request and slapped them here. It would be interesting
 // to find out exactly what's going on, but that'd take a while.
 public class CommonHeaders {
-    public static final HashMap<String, String> headers = new HashMap<>() {
+    public static final HashMap<String, String> headers = new HashMap<String, String>() {
         {
             put("User-Agent", "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:82.0) Gecko/20100101 Firefox/82.0");
             put("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");

@@ -1,12 +1,13 @@
-
 import core.LibFinder;
 import core.SearchEngine;
 import models.Library;
+import models.SearchResult;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MostFrequentLibraries {
     private final SearchEngine searchEngine;
@@ -19,13 +20,13 @@ public class MostFrequentLibraries {
     }
 
     public List<Library> fromTerm(final String query) {
-        final var results = searchEngine.searchFor(query);
-        final var popularLibraries = new HashMap<Library, Integer>();
+        final Stream<SearchResult> results = searchEngine.searchFor(query);
+        final HashMap<Library, Integer> popularLibraries = new HashMap<>();
 
         // Requests in parallel, saves time! If I was to use libraries, I'd use Rx for something
         // more complicated. Streams is a bit of an awkward API in my opinion though it has reasons to
         // be the way it is.
-        final var libs = results.parallel()
+        final List<Library> libs = results.parallel()
                 .flatMap(result -> libFinder.findLibraries(result.getLink()))
                 .collect(Collectors.toList());
 

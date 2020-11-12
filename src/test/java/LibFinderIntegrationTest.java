@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 // This test is flaky and a no-no in real life, though it helped me develop the feature.
@@ -14,7 +15,7 @@ public class LibFinderIntegrationTest {
 
     @Test @Ignore
     public void parsesLibraries() {
-        var libs = libFinder.findLibraries("https://jsoup.org").collect(Collectors.toList());
+        List<Library> libs = libFinder.findLibraries("https://jsoup.org").collect(Collectors.toList());
 
         Assert.assertEquals(2, libs.size());
         System.out.println(libs);

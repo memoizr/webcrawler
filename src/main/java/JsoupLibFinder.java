@@ -1,6 +1,7 @@
 import core.LibFinder;
 import models.Library;
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import utils.CommonHeaders;
 
 import java.util.stream.Stream;
@@ -17,7 +18,7 @@ public class JsoupLibFinder implements LibFinder {
         Stream<Library> result = null;
         try {
             // Jsoup is so nice
-            var doc = Jsoup.connect(url)
+             Document doc = Jsoup.connect(url)
                     .headers(CommonHeaders.headers)
                     .get();
 
@@ -28,7 +29,7 @@ public class JsoupLibFinder implements LibFinder {
                     .filter(element -> element != null && !element.isEmpty() && element.contains("js"))
                     .map(link -> {
                         // Makes me sad but it's just for the sake of getting the test done in time
-                        var list = link.split("/");
+                        String[] list = link.split("/");
                         return list[list.length -1];
                     })
                     .map(Library::new);

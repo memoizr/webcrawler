@@ -28,7 +28,7 @@ public class MostFrequentLibrariesTest {
 
     @Test
     public void whenThereAreHitsExtractsResults() {
-        final var libraries = new MostFrequentLibraries(searchEngine, libFinder)
+        final List<Library> libraries = new MostFrequentLibraries(searchEngine, libFinder)
                 .fromTerm("gutenberg");
 
         assertEquals(valueOf(1), searchEngine.searchForCallCount.get("gutenberg"));
@@ -43,7 +43,7 @@ public class MostFrequentLibrariesTest {
 
     @Test
     public void whenThereAreNoHitsExtractsNoResults() {
-        final var libraries = new MostFrequentLibraries(searchEngine, libFinder)
+        final List<Library> libraries = new MostFrequentLibraries(searchEngine, libFinder)
                 .fromTerm("obscure");
 
         assertEquals(valueOf(1), searchEngine.searchForCallCount.get("obscure"));
